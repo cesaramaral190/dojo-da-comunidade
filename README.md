@@ -6,4 +6,4 @@ Execute `npm run dev` para visualizar em http://localhost:4173. Os arquivos em `
 
 O formulário tem validação nativa e campos acessíveis. O envio depende de configurar o destino das inscrições. Enquanto isso, informa que os dados não foram enviados, sem armazená-los ou simular sucesso.
 
-A publicação externa não foi autorizada; a entrega permanece local.
+A referência original, as capturas de revisão e as configurações locais não integram o repositório. Nenhuma credencial é necessária para executar a página.

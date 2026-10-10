@@ -1,0 +1,16 @@
+# Configurações locais e credenciais
+.openai/
+.env
+.env.*
+!.env.example
+.codex/
+.agents/
+
+# Dependências e arquivos temporários
+node_modules/
+.DS_Store
+*.log
+
+# Referência original e capturas de revisão
+references/
+preview.jpg

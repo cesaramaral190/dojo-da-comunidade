@@ -11,25 +11,38 @@
 <body>
   <header class="admin-header">
     <a href="index.html" class="identity" aria-label="Voltar para a página inicial">
-      <span class="mark">▲</span>
-      <span><strong>DOJO</strong><small>DA COMUNIDADE</small></span>
+      <svg class="admin-brand-mark" viewBox="0 0 90 66" aria-hidden="true">
+        <path fill="currentColor" d="M45 0 10 40h17l18-21 18 21h17L45 0ZM9 43 0 53h31l8-10H9Zm43 0 8 10h30L81 43H52Z"/>
+        <path fill="#ffbd08" d="m36 43 7 3-12 19-7-4 12-18Zm13 3 7-3 11 18-7 4-11-19Z"/>
+        <path d="m40 40 5 8 5-8M45 32v14" fill="none" stroke="currentColor" stroke-width="4"/>
+      </svg>
+      <span class="identity-name"><strong>DOJO</strong><small>DA COMUNIDADE</small></span>
     </a>
     <button id="logout" class="secondary hidden" type="button">Sair</button>
   </header>
 
   <main>
-    <section id="login-panel" class="auth-card">
-      <p class="eyebrow">ACESSO RESTRITO</p>
-      <h1>Área administrativa</h1>
-      <p>Entre com o usuário administrativo para consultar as inscrições.</p>
-      <form id="login-form">
-        <label for="admin-email-input">E-mail</label>
-        <input id="admin-email-input" name="email" type="email" autocomplete="username" readonly>
-        <label for="admin-password">Senha</label>
-        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
-        <button class="primary" type="submit">ENTRAR</button>
-      </form>
-      <p id="auth-status" class="status" role="status"></p>
+    <section id="login-panel" class="auth-shell">
+      <div class="auth-intro">
+        <span class="section-number">01</span>
+        <p class="eyebrow">GESTÃO DO PROJETO</p>
+        <h1>Inscrições do<br>Dojo da Comunidade</h1>
+        <p>Consulte os dados enviados pelo formulário e acompanhe os novos participantes.</p>
+        <a href="index.html">← Voltar para o site</a>
+      </div>
+      <div class="auth-form-panel">
+        <p class="eyebrow">ACESSO RESTRITO</p>
+        <h2>Entrar no painel</h2>
+        <p>Use o usuário administrativo do projeto.</p>
+        <form id="login-form">
+          <label for="admin-username">Usuário</label>
+          <input id="admin-username" name="username" type="text" autocomplete="username" placeholder="Digite seu usuário" required autofocus>
+          <label for="admin-password">Senha</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="primary" type="submit">ENTRAR</button>
+        </form>
+        <p id="auth-status" class="status" role="status"></p>
+      </div>
     </section>
 
     <section id="dashboard" class="dashboard hidden" aria-labelledby="dashboard-title">

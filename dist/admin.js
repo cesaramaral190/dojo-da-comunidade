@@ -1,4 +1,4 @@
-const { supabaseUrl, supabasePublishableKey, adminEmail } = window.DOJO_CONFIG;
+const { supabaseUrl, supabasePublishableKey, adminUsername, adminEmail } = window.DOJO_CONFIG;
 const loginPanel = document.querySelector('#login-panel');
 const dashboard = document.querySelector('#dashboard');
 const loginForm = document.querySelector('#login-form');
@@ -9,8 +9,6 @@ const registrationsBody = document.querySelector('#registrations');
 const emptyState = document.querySelector('#empty-state');
 const searchInput = document.querySelector('#search');
 let registrations = [];
-
-document.querySelector('#admin-email-input').value = adminEmail;
 
 async function authRequest(path, body) {
   const response = await fetch(`${supabaseUrl}/auth/v1/${path}`, {
@@ -25,20 +23,22 @@ async function authRequest(path, body) {
 
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const password = new FormData(loginForm).get('password');
+  const formData = new FormData(loginForm);
+  const username = formData.get('username').trim().toLocaleLowerCase('pt-BR');
+  const password = formData.get('password');
   const button = loginForm.querySelector('button[type="submit"]');
   button.disabled = true;
   authStatus.className = 'status';
   authStatus.textContent = 'Entrando...';
   try {
+    if (username !== adminUsername) throw new Error('Credenciais inválidas.');
     const session = await authRequest('token?grant_type=password', { email: adminEmail, password });
     sessionStorage.setItem('dojo_admin_token', session.access_token);
     loginForm.reset();
-    document.querySelector('#admin-email-input').value = adminEmail;
     await openDashboard();
   } catch (error) {
     authStatus.className = 'status error';
-    authStatus.textContent = 'E-mail ou senha incorretos.';
+    authStatus.textContent = 'Usuário ou senha incorretos.';
   } finally {
     button.disabled = false;
   }
@@ -53,7 +53,7 @@ async function loadRegistrations() {
   });
   if (response.status === 401 || response.status === 403) {
     sessionStorage.removeItem('dojo_admin_token');
-    showLogin('Sua sessão expirou. Solicite um novo código.');
+    showLogin('Sua sessão expirou. Entre novamente.');
     return;
   }
   if (!response.ok) throw new Error('Não foi possível carregar as inscrições.');

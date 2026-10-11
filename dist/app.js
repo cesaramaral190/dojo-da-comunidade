@@ -1,8 +1,53 @@
 const registration = document.querySelector('#registration');
 const notice = document.querySelector('#notice');
-registration.addEventListener('submit', (event) => {
+const noticeTitle = document.querySelector('#notice-title');
+const noticeMessage = document.querySelector('#notice-message');
+const submitButton = registration.querySelector('button[type="submit"]');
+const submitButtonContent = submitButton.innerHTML;
+const { supabaseUrl, supabasePublishableKey } = window.DOJO_CONFIG;
+
+registration.addEventListener('submit', async (event) => {
   event.preventDefault();
-  notice.showModal();
+  if (!registration.reportValidity()) return;
+
+  const data = new FormData(registration);
+  const payload = {
+    nome: data.get('nome').trim(),
+    idade: Number(data.get('idade')),
+    sexo: data.get('sexo'),
+    telefone: data.get('telefone').trim(),
+    email: data.get('email').trim(),
+    mensagem: data.get('mensagem').trim() || null
+  };
+
+  submitButton.disabled = true;
+  submitButton.textContent = 'ENVIANDO...';
+
+  try {
+    const response = await fetch(`${supabaseUrl}/rest/v1/inscricoes`, {
+      method: 'POST',
+      headers: {
+        apikey: supabasePublishableKey,
+        Authorization: `Bearer ${supabasePublishableKey}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) throw new Error(`Falha ao enviar: ${response.status}`);
+    registration.reset();
+    noticeTitle.textContent = 'Inscrição recebida!';
+    noticeMessage.textContent = 'Obrigado por fazer parte do Dojo da Comunidade. Entraremos em contato pelos dados informados.';
+  } catch (error) {
+    console.error(error);
+    noticeTitle.textContent = 'Não foi possível enviar';
+    noticeMessage.textContent = 'Confira sua conexão e tente novamente. Seus dados ainda não foram enviados.';
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = submitButtonContent;
+    notice.showModal();
+  }
 });
 document.querySelector('#close-notice').addEventListener('click', () => notice.close());
 const navigation = [...document.querySelectorAll('.site-header nav a')];

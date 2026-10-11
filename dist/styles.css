@@ -14,3 +14,4 @@
 @media(max-width:360px){.brand-wordmark{width:100px;height:23px}}
 @media(min-width:761px){.hero-copy{padding-top:30px;padding-bottom:25px}.hero-copy h1{font-size:56px;line-height:.94}.benefits-grid{grid-template-columns:1fr 1fr 1fr 1.3fr 1fr 1fr;gap:14px}.benefits-grid p{white-space:nowrap}}
 @media(min-width:1200px){.hero-copy{padding-top:45px;padding-bottom:44px}.hero-copy h1{font-size:64px;line-height:.97}}
+.admin-link{display:inline-block;margin:10px 0 0 7px;color:#bdbdbd;font-size:11px;text-decoration:underline;text-underline-offset:3px}.admin-link:hover{color:var(--yellow)}.submit-button:disabled{cursor:wait;filter:grayscale(.3);opacity:.75}

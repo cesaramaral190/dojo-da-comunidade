@@ -4,6 +4,8 @@ Landing page implementada em HTML, CSS e JavaScript a partir da referência visu
 
 Execute `npm run dev` para visualizar em http://localhost:4173. Os arquivos em `dist` são estáticos e não precisam de compilação. `npm run check` verifica a sintaxe do JavaScript.
 
-O formulário tem validação nativa e campos acessíveis. O envio depende de configurar o destino das inscrições. Enquanto isso, informa que os dados não foram enviados, sem armazená-los ou simular sucesso.
+O formulário tem validação nativa, campos acessíveis e salva as inscrições no Supabase. A página `admin.html` permite consultar os cadastros após autenticação com o usuário administrativo.
+
+O navegador usa apenas a chave publicável do Supabase. A chave secreta do projeto não é armazenada no código. A tabela usa Row Level Security: visitantes podem inserir inscrições e somente o e-mail administrativo autenticado pode consultá-las.
 
 A referência original, as capturas de revisão e as configurações locais não integram o repositório. Nenhuma credencial é necessária para executar a página.

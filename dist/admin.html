@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Inscrições — Dojo da Comunidade</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header class="admin-header">
+    <a href="index.html" class="identity" aria-label="Voltar para a página inicial">
+      <span class="mark">▲</span>
+      <span><strong>DOJO</strong><small>DA COMUNIDADE</small></span>
+    </a>
+    <button id="logout" class="secondary hidden" type="button">Sair</button>
+  </header>
+
+  <main>
+    <section id="login-panel" class="auth-card">
+      <p class="eyebrow">ACESSO RESTRITO</p>
+      <h1>Área administrativa</h1>
+      <p>Entre com o usuário administrativo para consultar as inscrições.</p>
+      <form id="login-form">
+        <label for="admin-email-input">E-mail</label>
+        <input id="admin-email-input" name="email" type="email" autocomplete="username" readonly>
+        <label for="admin-password">Senha</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        <button class="primary" type="submit">ENTRAR</button>
+      </form>
+      <p id="auth-status" class="status" role="status"></p>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden" aria-labelledby="dashboard-title">
+      <div class="title-row">
+        <div><p class="eyebrow">PAINEL DO PROJETO</p><h1 id="dashboard-title">Inscrições recebidas</h1></div>
+        <button id="refresh" class="secondary" type="button">Atualizar</button>
+      </div>
+      <div class="metrics">
+        <article><span id="total-count">0</span><p>Total de inscrições</p></article>
+        <article><span id="today-count">0</span><p>Recebidas hoje</p></article>
+      </div>
+      <div class="toolbar">
+        <label for="search" class="sr-only">Buscar inscrição</label>
+        <input id="search" type="search" placeholder="Buscar por nome, telefone ou e-mail">
+      </div>
+      <p id="dashboard-status" class="status" role="status"></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Nome</th><th>Idade</th><th>Sexo</th><th>Contato</th><th>Mensagem</th></tr></thead>
+          <tbody id="registrations"></tbody>
+        </table>
+      </div>
+      <p id="empty-state" class="empty hidden">Nenhuma inscrição encontrada.</p>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

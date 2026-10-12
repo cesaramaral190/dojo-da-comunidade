@@ -6,6 +6,8 @@
   <meta name="description" content="Dojo da Comunidade: aulas gratuitas de Jiu-Jitsu para todas as idades em Araçatuba, SP. Disciplina, respeito e comunidade.">
   <meta name="theme-color" content="#101010">
   <title>Dojo da Comunidade — Jiu-Jitsu gratuito</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -88,11 +90,15 @@
     </section>
   </main>
   <footer id="aulas"><div class="container footer-layout">
-    <div class="location"><svg class="icon"><use href="#pin"/></svg><div><h2>LOCAL DAS AULAS</h2><p>Comando de Policiamento do Interior 10<br>Araçatuba - SP</p></div></div>
+    <div class="location-block"><div class="location"><svg class="icon"><use href="#pin"/></svg><div><h2>LOCAL DAS AULAS</h2><p>Comando de Policiamento do Interior 10<br>Rua Cap. Alberto Mendes Júnior, 238<br>Araçatuba - SP</p><a class="map-link" href="https://maps.app.goo.gl/k581bkpdKj97Ha8Z6" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a></div></div></div>
+    <div id="class-map" class="class-map" aria-label="Mapa do local das aulas"></div>
     <a class="brand footer-brand" href="#inicio" aria-label="Dojo da Comunidade — início"><svg class="brand-mark"><use href="#mark"/></svg><span class="brand-name"><svg class="brand-wordmark" aria-hidden="true"><use href="#wordmark"/></svg><span>DA COMUNIDADE</span></span></a>
-    <div><p class="footer-motto">MAIS QUE<br> UM ESPORTE,<br> UMA OPORTUNIDADE<br><strong>DE VIDA.</strong></p><a class="admin-link" href="admin.html">Área administrativa</a></div>
+    <div><p class="footer-motto"><span>MAIS QUE</span><span>UM ESPORTE,</span><span>UMA OPORTUNIDADE</span><strong>DE VIDA.</strong></p><a class="admin-link" href="admin.html">Área administrativa</a></div>
   </div></footer>
   <dialog id="notice" aria-labelledby="notice-title"><h2 id="notice-title">Inscrição recebida</h2><p id="notice-message">Seus dados foram enviados com sucesso.</p><button class="button" id="close-notice" type="button">Fechar</button></dialog>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@5.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/dist/leaflet-maplibre-gl.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>

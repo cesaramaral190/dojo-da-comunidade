@@ -66,3 +66,18 @@ if ('IntersectionObserver' in window) {
   }, { rootMargin: '-5% 0px -65% 0px', threshold: 0 });
   observedSections.forEach(section => observer.observe(section));
 }
+
+const classMapElement = document.querySelector('#class-map');
+if (classMapElement && window.L) {
+  const classLocation = [-21.1959644, -50.4320514];
+  const classMap = L.map(classMapElement, { scrollWheelZoom: false }).setView(classLocation, 16);
+  const openFreeMapLayer = window.MaplibreGLLeaflet?.maplibreGL || L.maplibreGL;
+  if (openFreeMapLayer) {
+    openFreeMapLayer({ style: 'https://tiles.openfreemap.org/styles/liberty' }).addTo(classMap);
+  }
+  classMap.attributionControl.addAttribution('<a href="https://openfreemap.org/">OpenFreeMap</a> · dados do <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>');
+  L.marker(classLocation)
+    .addTo(classMap)
+    .bindPopup('<strong>Dojo da Comunidade</strong><br>Comando de Policiamento do Interior 10')
+    .openPopup();
+}
